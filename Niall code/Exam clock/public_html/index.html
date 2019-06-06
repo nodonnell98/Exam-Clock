@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <style>
+            h2{
+                font-size: 30px;
+                text-align: center;
+            }
+            h1{
+                font-size: 48px;
+                text-align: center;
+            }           
+            #clock{
+
+                text-align: center;
+                font-size: 125px; 
+            }
+
+            #table{
+                width: 90%;
+
+            }
+            td{
+                font-size: 25px;
+            }
+            #formContainer{   
+                width: 100%;
+                margin-top: 50px;
+                border-color: grey;
+                border-top: solid;
+                border-bottom: solid;
+                padding: 10px;
+            }
+            #form{
+                align-content: center;
+            }
+            input[type=text] {
+                width: 15%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+            }
+
+
+        </style>
+
+
+
+        <script>
+            function startTime() {
+                var today = new Date();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+
+                var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+                var d = days[today.getDay()] + " " + today.getDay();
+                var mm = months[today.getMonth()];
+                var y = today.getYear();
+
+
+                m = checkTime(m);
+                s = checkTime(s);
+                document.getElementById('clock').innerHTML =
+                        h + ":" + m + ":" + s;
+                document.getElementById('date').innerHTML =
+                        d + ", " + mm + ", " + 2019;
+                var t = setTimeout(startTime, 500);
+            }
+            function checkTime(i) {
+                if (i < 10) {
+                    i = "0" + i
+                }
+                ;  // add zero in front of numbers < 10
+                return i;
+            }
+
+
+            function add() {
+                var subject = document.getElementById("subject").value;
+                var code = document.getElementById("code").value;
+                var start = document.getElementById("start").value;
+                var end = document.getElementById("end").value;
+                var length = document.getElementById("length").value;
+// Find a <table> element with id="myTable":
+                var table = document.getElementById("myTable");
+
+// Create an empty <tr> element and add it to the 1st position of the table:
+                var row = table.insertRow(1);
+
+// Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+                var cell5 = row.insertCell(4);
+
+// Add some text to the new cells:
+                cell1.innerHTML = subject;
+                cell2.innerHTML = code;
+                cell3.innerHTML = start;
+                cell4.innerHTML = end;
+                cell5.innerHTML = length;
+            }
+        </script>
+
+
+
+    </head>
+    <body onload="startTime()">
+        <h2 id="date"></h2>
+        <h1>CENTRE NUMBER: 20796</h1>
+        <h3 id="clock"></h3>
+
+        <div class="container" id="table">
+
+            <table class="table table-bordered" id="myTable">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Code</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Length</th>
+
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div id="formContainer">
+            <form id="form">
+                Subject:  <input type="text" name="subject" id="subject">
+                Code:  <input type="text" name="code" id="code">
+                Start:  <input type="text" name="start" id="start">
+                End:  <input type="text" name="end" id="end">
+                Length:  <input type="text" name="length" id="length">
+
+                <input type="button" name ="button" value="Add" onclick="add()">
+            </form>
+        </div>
+    </body>
+</html>
